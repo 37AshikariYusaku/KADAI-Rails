@@ -13,7 +13,7 @@ class User < ApplicationRecord
 	
 	# パスワードをアルファベット、数字の混合のみ可能にしてください
 	VALID_PASSWORD_REGEX = /(?=.*[a-zA-Z])(?=.*\d)[a-zA-Z\d]\w{8,32}\z/
-  validates :password, presence: true,
+    validates :password, presence: true,
             format: { with: VALID_PASSWORD_REGEX}
 	
 	
