@@ -3,8 +3,11 @@ class SessionsController < ApplicationController
   end
   
   def create
-    user = User.find_by(email: params[:session][:email])
-    if user && user.authenticate(params[:session][:password])
+    # user = User.find_by(email: params[:session][:email])
+    # if user && user.authenticate(params[:session][:password])
+    user = User.find_by(login_email)
+    if user && user.authenticate(login_password[:password])
+      # authenticateメソッドの引数は文字列
       log_in user
       redirect_to root_path, success: 'ログインに成功しました'
     else
@@ -30,5 +33,14 @@ class SessionsController < ApplicationController
     session.delete(:user_id)
     @current_user = nil
   end  
+  
+  def login_email
+    params.require(:session).permit(:email)
+  end
+  
+  def login_password
+    params.require(:session).permit(:password)
+  end
+  
 
 end  
