@@ -9,8 +9,9 @@ Rails.application.routes.draw do
   get 'pages/help'
   
   resources :users
-  resources :topics
-  resources :comments, only: [:create]
+  resources :topics do
+    resources :comments
+  end  
   
   get '/login', to: 'sessions#new'
   post '/login', to: 'sessions#create'
