@@ -1,6 +1,5 @@
 <div class="topic-index-wrapper">
 	<div class="container">
-		<% @topics.each do |topic| %>
 		  <div class="row">
 		  	<div class="col-md-6 col-md-offset-3">
 		  		<div class="topic-index-single">
@@ -19,12 +18,28 @@
 	  			    		<%= image_tag 'heart-black.png', class: 'topic-index-icon heart-red' %><%= topic.favorites.count %>
 	  			    	<% end %>	
 		  			<% end %>	
-		  				<%= link_to topic_path %>
-		  					<%= image_tag 'comment.png', class: 'topic-index-icon' %>
-		  				<% end %>	
 		  			<p class="topic-text">
 		  				<%= topic.description %>
 		  			</p>
+		  			
+		  			<h2>コメント</h2>
+		  			<% @comments.each do |comment| %>
+		  				<li class="media mb-3">
+		  					<div class="media-body">
+		  						<div>
+		  							<%= comment.user.name %>
+		  						</div>
+		  						<div>
+		  							<%= comment.content %>
+		  						</div>
+		  					</div>
+		  				</li>
+		  			<% end %>
+		  			
+		  			<%= form_for [@topic, @comment] do |f| %>
+		  				<%= f.text_area :content %>
+		  				<%= f.submit 'コメントする' %>
+		  			<% end %>	
 		  			
 		  			
 		  		</div>
