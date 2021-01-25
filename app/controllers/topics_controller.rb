@@ -8,8 +8,8 @@ class TopicsController < ApplicationController
     @topics = Topic.all.includes(:favorite_users)
     # N+1問題、favorite_usersの検索を一度にまとめて行うメソッド「includes」
     
-    @topic = Topic.find(params[:id])
-    @comments = @topic.comments
+    @topic = Topic.find_by(params[:user_id])
+    
     @comment = Comment.new
   end
   
