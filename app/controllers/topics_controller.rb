@@ -28,7 +28,7 @@ class TopicsController < ApplicationController
   
   
   def show
-    @topic = Topic.find_by(params[:user_id])
+    @topic = Topic.find_by(params[:id])
     @comments = @topic.comments.includes(:user)
     @comment = @topic.comments.build(user_id: current_user.id) if current_user
   end  

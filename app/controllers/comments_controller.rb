@@ -16,7 +16,7 @@ class CommentsController < ApplicationController
 	# end
 	
 	def create
-		@topic = Topic.find_by(params[:user_id])
+		@topic = Topic.find_by(params[:id])
 		@comment = @topic.comments.build(comment_params)
 		@comment.user_id = current_user.id
 		@comment.topic_id = @comment.user_id
